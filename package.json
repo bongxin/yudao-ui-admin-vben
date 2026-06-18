@@ -101,7 +101,11 @@
     "vue": "catalog:",
     "vue-tsc": "catalog:"
   },
-  "packageManager": "pnpm@11.2.2",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.2",
   "dependencies": {
     "unrun": "^0.3.1"
   }
