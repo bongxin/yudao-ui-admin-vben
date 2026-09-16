@@ -6,7 +6,7 @@ import type { MallKefuMessageApi } from '#/api/mall/promotion/kefu/message';
 
 import { computed, reactive, ref, toRefs, unref, watch } from 'vue';
 
-import { KeFuMessageContentTypeEnum, UserTypeEnum } from '@vben/constants';
+import { UserTypeEnum } from '@vben/constants';
 import { IconifyIcon } from '@vben/icons';
 import { formatDate, isEmpty, jsonParse } from '@vben/utils';
 

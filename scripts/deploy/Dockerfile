@@ -1,4 +1,4 @@
-FROM node:22-slim AS builder
+FROM registry.npmmirror.com/library/node:22-slim AS builder
 
 # --max-old-space-size
 ENV PNPM_HOME="/pnpm"
@@ -15,7 +15,7 @@ WORKDIR /app
 COPY . /app
 
 # 安装依赖
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --ignore-scripts
 RUN pnpm run build --filter=\!./docs
 
 RUN echo "Builder Success 🎉"

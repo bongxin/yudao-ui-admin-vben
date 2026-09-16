@@ -4,7 +4,7 @@ import type { WmsItemCategoryApi } from '#/api/wms/md/item/category';
 
 import { h } from 'vue';
 
-import { CommonStatusEnum, DICT_TYPE, generateWmsCode } from '@vben/constants';
+import { CommonStatusEnum } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { handleTree } from '@vben/utils';
 
@@ -64,7 +64,7 @@ export function useFormSchema(formApi?: VbenFormApi): VbenFormSchema[] {
           {
             type: 'default',
             onClick: () => {
-              formApi?.setFieldValue('code', generateWmsCode('C'));
+              formApi?.setFieldValue('code', '');
             },
           },
           { default: () => '生成' },
