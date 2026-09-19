@@ -88,14 +88,31 @@ const getOptions = computed(() => {
   return data.length > 0 ? data : transformData(props.options);
 });
 
+// 表单按组件库约定用 value / onUpdate:value，这里的 defineModel 仍是 modelValue。
+// 不把外部更新转发出去时，下拉框会显示已选，表单值却一直是空的。
+watch(
+  () => attrs[props.modelPropName],
+  (value) => {
+    if (!isEqual(value, modelValue.value)) {
+      modelValue.value = value;
+    }
+  },
+  { immediate: true },
+);
+
 const bindProps = computed(() => {
+  const updateKey = `onUpdate:${props.modelPropName}`;
+  const parentUpdate = attrs[updateKey] as
+    | ((value: unknown) => void)
+    | undefined;
   return {
     [props.modelPropName]: unref(modelValue),
     [props.optionsPropName]: unref(getOptions),
-    [`onUpdate:${props.modelPropName}`]: (val: string) => {
-      modelValue.value = val;
+    [updateKey]: (value: unknown) => {
+      modelValue.value = value;
+      parentUpdate?.(value);
     },
-    ...objectOmit(attrs, [`onUpdate:${props.modelPropName}`]),
+    ...objectOmit(attrs, [updateKey, props.modelPropName]),
     ...(props.visibleEvent
       ? {
           [props.visibleEvent]: handleFetchForVisible,

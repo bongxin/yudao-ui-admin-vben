@@ -18,9 +18,12 @@ export const overridesPreferences = defineOverridesPreferences({
     enable: false,
     fixed: false,
   },
+  logo: {
+    source: '/logo.svg',
+  },
   copyright: {
     companyName: import.meta.env.VITE_APP_TITLE,
-    companySiteLink: 'https://gitee.com/yudaocode/yudao-ui-admin-vben',
+    companySiteLink: '',
   },
   // copyright: appCopyrightPreferences,
 });
